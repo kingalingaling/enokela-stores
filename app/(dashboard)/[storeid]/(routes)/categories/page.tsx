@@ -13,7 +13,7 @@ const CategoriesPage = async ({ params }: { params: { storeId: string } }) => {
       billboard: true,
     },
     orderBy: {
-      upatedAt: "desc",
+      updatedAt: "desc",
     },
   });
 
@@ -22,7 +22,7 @@ const CategoriesPage = async ({ params }: { params: { storeId: string } }) => {
     name: item.name,
     billboardLabel: item.billboard.label,
     createdAt: format(item.createdAt, "HH:mm - MMMM do, yyyy"),
-    updatedAt: format(item.createdAt, "HH:mm - MMMM do, yyyy"),
+    updatedAt: format(item.updatedAt, "HH:mm - MMMM do, yyyy"),
   }));
 
   return (
