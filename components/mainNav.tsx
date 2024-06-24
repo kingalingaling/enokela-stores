@@ -28,6 +28,11 @@ export const MainNav = ({
       active: pathName === `/${params.storeId}/categories`,
     },
     {
+      href: `/${params.storeId}/colors`,
+      label: "Colors",
+      active: pathName === `/${params.storeId}/colors`,
+    },
+    {
       href: `/${params.storeId}/sizes`,
       label: "Sizes",
       active: pathName === `/${params.storeId}/sizes`,
