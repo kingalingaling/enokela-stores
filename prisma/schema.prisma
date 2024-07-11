@@ -89,6 +89,7 @@ model Product {
   colorId     String @db.ObjectId
   color       Color @relation(fields: [colorId], references: [id])
   name        String
+  description String
   price       Float
   isFeatured  Boolean @default(false)
   isArchived  Boolean @default(false)
