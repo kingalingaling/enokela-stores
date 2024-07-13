@@ -66,7 +66,6 @@ const ProductForm: React.FC<ProductFormProps> = ({
 
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [prodImages, setProdImages] = useState<string[]>([]);
 
   const title = initialData ? "Edit Product" : "Create Product";
   const description = initialData ? "Edit a Product" : "Add a New Product";
@@ -122,9 +121,7 @@ const ProductForm: React.FC<ProductFormProps> = ({
       router.push(`/${params.storeId}/products`);
       toast.success("Product Deleted");
     } catch (error) {
-      toast.error(
-        "Something went wrong. Please refresh and try again"
-      );
+      toast.error("Something went wrong. Please refresh and try again");
     } finally {
       setLoading(false);
       setOpen(false);
@@ -168,26 +165,10 @@ const ProductForm: React.FC<ProductFormProps> = ({
                 <FormLabel>Images</FormLabel>
                 <FormControl>
                   <ImageUpload
-                    // value={field.value.map((image) => image.url)}
-                    value={prodImages}
+                    value={field.value.map((image) => image.url)}
                     disabled={loading}
-                    onChange={(url) => {
-                      const newFieldValues = [
-                        ...(Array.isArray(field.value) ? field.value : []),
-                        { url },
-                      ];
-                      field.onChange(newFieldValues);
-                      setProdImages((prev) => [...prev, url]);
-                    }}
-                    onRemove={(url) => {
-                      const newFieldValues = (
-                        Array.isArray(field.value) ? field.value : []
-                      ).filter((current) => current.url !== url);
-                      field.onChange(newFieldValues);
-                      setProdImages((prev) =>
-                        prev.filter((currentUrl) => currentUrl !== url)
-                      );
-                    }}
+                    onChange={(url) => field.onChange([...field.value, { url }])}
+                    onRemove={(url) => field.onChange([...field.value.filter((current) => current.url !== url)])}
                   />
                 </FormControl>
               </FormItem>
@@ -377,7 +358,10 @@ const ProductForm: React.FC<ProductFormProps> = ({
                   <FormItem>
                     <FormLabel>Produce Description</FormLabel>
                     <FormControl>
-                      <Textarea placeholder="Update Product Description " />
+                      <Textarea
+                        placeholder="Update Product Description "
+                        {...field}
+                      />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
