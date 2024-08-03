@@ -28,6 +28,11 @@ export const MainNav = ({
       active: pathName === `/${params.storeId}/categories`,
     },
     {
+      href: `/${params.storeId}/products`,
+      label: "Products",
+      active: pathName === `/${params.storeId}/products`,
+    },
+    {
       href: `/${params.storeId}/colors`,
       label: "Colors",
       active: pathName === `/${params.storeId}/colors`,
@@ -36,6 +41,11 @@ export const MainNav = ({
       href: `/${params.storeId}/sizes`,
       label: "Sizes",
       active: pathName === `/${params.storeId}/sizes`,
+    },
+    {
+      href: `/${params.storeId}/orders`,
+      label: "Orders",
+      active: pathName === `/${params.storeId}/orders`,
     },
     {
       href: `/${params.storeId}/settings`,
