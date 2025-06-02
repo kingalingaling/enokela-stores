@@ -6,7 +6,9 @@ import StoreSwitcher from "./store-switcher";
 import { redirect } from "next/navigation";
 import prismadb from "@/lib/prismadb";
 
-const Navbar = async ({storeId}:{storeId:string}) => {
+export const dynamic = "force-dynamic";
+
+const Navbar = async () => {
   const { userId } = auth();
 
   if (!userId) {
@@ -23,7 +25,7 @@ const Navbar = async ({storeId}:{storeId:string}) => {
     <div className="border-b">
       <div className="flex h-16 items-center px-4">
         <StoreSwitcher items={stores} />
-        <MainNav className="mx-6" storeId={storeId} />
+        <MainNav className="mx-6"/>
         <div className="ml-auto flex items-center space-x-4">
           <UserButton afterSignOutUrl="/" />
         </div>
