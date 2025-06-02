@@ -8,7 +8,7 @@ import prismadb from "@/lib/prismadb";
 
 export const dynamic = "force-dynamic";
 
-const Navbar = async ({storeId}:{storeId:string}) => {
+const Navbar = async () => {
   const { userId } = auth();
 
   if (!userId) {
