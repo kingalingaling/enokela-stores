@@ -6,6 +6,8 @@ import StoreSwitcher from "./store-switcher";
 import { redirect } from "next/navigation";
 import prismadb from "@/lib/prismadb";
 
+export const dynamic = "force-dynamic";
+
 const Navbar = async ({storeId}:{storeId:string}) => {
   const { userId } = auth();
 
