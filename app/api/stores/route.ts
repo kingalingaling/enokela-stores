@@ -2,6 +2,14 @@ import prismadb from "@/lib/prismadb";
 import { auth } from "@clerk/nextjs";
 import { NextResponse } from "next/server";
 
+export async function GET() {
+  const { userId } = auth();
+  if (!userId) return new NextResponse("Unauthorized", { status: 401 });
+
+  const stores = await prismadb.store.findMany({ where: { userId } });
+  return NextResponse.json(stores);
+}
+
 export async function POST(req: Request) {
   try {
     const { userId } = auth();

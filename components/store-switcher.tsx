@@ -45,7 +45,7 @@ export default function StoreSwitcher({
   }));
 
   const currentStore = formattedItems.find(
-    (item) => item.value === params.storeId
+    (item) => item.value === (params.storeId as string)
   );
 
   const [open, setOpen] = useState(false);
