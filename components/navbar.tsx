@@ -1,5 +1,5 @@
 import { UserButton, auth } from "@clerk/nextjs";
-import React from "react";
+import {useState} from "react";
 
 import { MainNav } from "./mainNav";
 import StoreSwitcher from "./store-switcher";
@@ -8,18 +8,13 @@ import prismadb from "@/lib/prismadb";
 
 export const dynamic = "force-dynamic";
 
-const Navbar = async () => {
-  const { userId } = auth();
-
-  if (!userId) {
-    redirect("/sign-in");
-  }
-
-  const stores = await prismadb.store.findMany({
-    where: {
-      userId: userId,
-    },
-  });
+const Navbar = () => {
+  const [stores, setStores] = useState([]);
+  useEffect(() => {
+    fetch("/api/stores")
+      .then((res) => res.json())
+      .then(setStores);
+  }, []);
 
   return (
     <div className="border-b">
